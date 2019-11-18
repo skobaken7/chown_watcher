@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    working_dir: /app
+    volumes:
+      - $GOPATH/src:/watch/go-src
+      - ~/.cache/go-build:/watch/go-build
+      - .:/watch/batch
+      - ../detroit-market-api:/watch/api
+      - .:/app
+    command: go run .
